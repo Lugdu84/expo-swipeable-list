@@ -1,8 +1,5 @@
 import { View, Text, StyleSheet, Animated, Pressable } from 'react-native';
-import {
-	GestureHandlerRootView,
-	Swipeable,
-} from 'react-native-gesture-handler';
+import { Swipeable } from 'react-native-gesture-handler';
 import React, { useState } from 'react';
 import { Fontisto } from '@expo/vector-icons';
 
@@ -28,13 +25,7 @@ const RightActions = ({ onDelete }: RightActionsProps) => {
 		console.log('archive');
 	};
 	return (
-		<View
-			style={[
-				{
-					flex: 1 / 2,
-					flexDirection: 'row',
-				},
-			]}>
+		<View style={styles.actions}>
 			<Pressable
 				style={[styles.button, { backgroundColor: 'blue' }]}
 				onPress={handleArchive}>
@@ -62,13 +53,7 @@ const LeftActions = () => {
 		console.log('edit');
 	};
 	return (
-		<View
-			style={[
-				{
-					flex: 1 / 2,
-					flexDirection: 'row',
-				},
-			]}>
+		<View style={styles.actions}>
 			<Pressable
 				style={[styles.button, { backgroundColor: 'green' }]}
 				onPress={handleEdit}>
@@ -110,6 +95,10 @@ const styles = StyleSheet.create({
 		backgroundColor: 'lightgray',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
+	},
+	actions: {
+		flex: 1 / 2,
+		flexDirection: 'row',
 	},
 	button: {
 		flex: 1,
