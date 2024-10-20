@@ -67,7 +67,7 @@ const LeftActions = () => {
 	);
 };
 
-export default function SwipableItem({ item, onDelete }: ListItemProps) {
+export default function SwipeableItem({ item, onDelete }: ListItemProps) {
 	return (
 		<Swipeable
 			// onSwipeableOpen={() => onDelete(item.id)}

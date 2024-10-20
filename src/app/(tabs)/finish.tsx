@@ -1,6 +1,5 @@
 import { FlatList, StyleSheet, View } from 'react-native';
-import ListItem from '@components/ListItem';
-import SwipableItem from '@/components/SwipableItem';
+import SwipeableItem from '@/components/SwipeableItem';
 import { useState } from 'react';
 
 const listLanguages = [
@@ -61,7 +60,7 @@ export default function FinishScreen() {
 				keyExtractor={(item) => item.id.toString()}
 				contentContainerStyle={styles.container}
 				renderItem={({ item }) => (
-					<SwipableItem
+					<SwipeableItem
 						item={item}
 						onDelete={handleDelete}
 					/>
