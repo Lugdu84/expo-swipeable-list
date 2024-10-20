@@ -1,6 +1,6 @@
-import { View, Text, StyleSheet, Animated, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { Swipeable } from 'react-native-gesture-handler';
-import React, { useState } from 'react';
+import { useRef } from 'react';
 import { Fontisto } from '@expo/vector-icons';
 
 type ListItemProps = {
@@ -9,6 +9,8 @@ type ListItemProps = {
 		name: string;
 	};
 	onDelete: (id: string) => void;
+	lastSelectedItem: { id: string; ref: Swipeable | null };
+	setLastSelectedItem: (item: { id: string; ref: Swipeable | null }) => void;
 };
 
 type RightActionsProps = {
@@ -67,12 +69,33 @@ const LeftActions = () => {
 	);
 };
 
-export default function SwipeableItem({ item, onDelete }: ListItemProps) {
+export default function SwipeableItem({
+	item,
+	lastSelectedItem,
+	setLastSelectedItem,
+	onDelete,
+}: ListItemProps) {
+	const swipRef = useRef<Swipeable | null>(null);
+
+	const resetIfAlreadyOpen = () => {
+		if (item.id !== lastSelectedItem.id) {
+			lastSelectedItem.ref?.close();
+		}
+		setLastSelectedItem({
+			id: item.id,
+			ref: swipRef.current,
+		});
+	};
+
 	return (
 		<Swipeable
+			ref={swipRef}
 			// onSwipeableOpen={() => onDelete(item.id)}
-			onSwipeableWillOpen={() => console.log('onSwipeableWillOpen')}
-			onSwipeableWillClose={() => console.log('onSwipeableWillClose')}
+			onSwipeableOpen={resetIfAlreadyOpen}
+			onSwipeableClose={() => null}
+			onActivated={() => null}
+			onSwipeableWillOpen={() => null}
+			onSwipeableWillClose={() => null}
 			renderRightActions={() => (
 				<RightActions
 					onDelete={() => {

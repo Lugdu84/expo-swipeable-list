@@ -1,6 +1,7 @@
 import { FlatList, StyleSheet, View } from 'react-native';
 import SwipeableItem from '@/components/SwipeableItem';
 import { useState } from 'react';
+import { Swipeable } from 'react-native-gesture-handler';
 
 const listLanguages = [
 	{
@@ -46,10 +47,16 @@ const listLanguages = [
 ];
 
 export default function FinishScreen() {
-	const [languages, setLanguages] = useState(listLanguages);
+	const [languages, setLangages] = useState(listLanguages);
+
+	const [lastSelectedItem, setLastSelectedItem] = useState<{
+		id: string;
+		ref: Swipeable | null;
+	}>({ id: '', ref: null });
 	const handleDelete = (id: string) => {
-		setLanguages((prev) => prev.filter((item) => item.id !== id));
+		setLangages((prev) => prev.filter((item) => item.id !== id));
 	};
+
 	return (
 		<View
 			style={{
@@ -63,6 +70,8 @@ export default function FinishScreen() {
 					<SwipeableItem
 						item={item}
 						onDelete={handleDelete}
+						lastSelectedItem={lastSelectedItem}
+						setLastSelectedItem={setLastSelectedItem}
 					/>
 				)}
 			/>

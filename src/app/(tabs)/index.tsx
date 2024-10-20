@@ -1,8 +1,9 @@
 import { FlatList, StyleSheet, View } from 'react-native';
 import ListItem from '@components/ListItem';
 import { useState } from 'react';
+import { Swipeable } from 'react-native-gesture-handler';
 
-const listLanguages = [
+const listLangages = [
 	{
 		id: '1',
 		name: 'JavaScript',
@@ -46,10 +47,15 @@ const listLanguages = [
 ];
 
 export default function StartScreen() {
-	const [languages, setLanguages] = useState(listLanguages);
+	const [langages, setLangages] = useState(listLangages);
+
+	const [lastSelectedItem, setLastSelectedItem] = useState<{
+		id: string;
+		ref: Swipeable | null;
+	}>({ id: '', ref: null });
 
 	const handleDelete = (id: string) => {
-		setLanguages((prev) => prev.filter((item) => item.id !== id));
+		setLangages((prev) => prev.filter((item) => item.id !== id));
 	};
 	return (
 		<View
@@ -57,10 +63,17 @@ export default function StartScreen() {
 				flex: 1,
 			}}>
 			<FlatList
-				data={languages}
+				data={langages}
 				keyExtractor={(item) => item.id.toString()}
 				contentContainerStyle={styles.container}
-				renderItem={({ item }) => <ListItem item={item} />}
+				renderItem={({ item }) => (
+					<ListItem
+						item={item}
+						onDelete={handleDelete}
+						lastSelectedItem={lastSelectedItem}
+						setLastSelectedItem={setLastSelectedItem}
+					/>
+				)}
 			/>
 		</View>
 	);
