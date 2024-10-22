@@ -1,5 +1,7 @@
+// L'item que vous allez devoir modifier pour intégrer le swipe
+
 import { useRef } from 'react';
-import { View, Text, StyleSheet, Pressable } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { Swipeable } from 'react-native-gesture-handler';
 
 type ListItemProps = {
@@ -53,10 +55,10 @@ const styles = StyleSheet.create({
 	},
 });
 
-// 1. Installer les packages si nécessaire
+// 1. Installer react-native-gesture-handler, si nécessaire
 // 2. Ajouter le <GestureHandlerRootView>
 // 3. Ajouter le Swipeable
-// 4. Ajouter les actions, via le renderRightActions et renderLeftActions
+// 4. Ajouter les actions, via le renderRightActions et renderLeftActions (on pourrait faire un composant externe)
 // 5. Jouer avec les tailles, en mettant plusieurs boutons
 // 6. Implémenter la suppression : au click sur le bouton ou au swipe
 // 7. Gérer le swipe : fermer les autres éléments ouverts

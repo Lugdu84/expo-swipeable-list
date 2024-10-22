@@ -27,12 +27,12 @@ const RightActions = ({ onDelete }: RightActionsProps) => {
 		console.log('archive');
 	};
 	return (
-		<View style={styles.actions}>
+		<View style={[styles.actions, { flex: 1 }]}>
 			<Pressable
 				style={[styles.button, { backgroundColor: 'blue' }]}
 				onPress={handleArchive}>
 				<Fontisto
-					name="preview"
+					name="bookmark"
 					size={18}
 					color="white"
 				/>
@@ -60,7 +60,7 @@ const LeftActions = () => {
 				style={[styles.button, { backgroundColor: 'green' }]}
 				onPress={handleEdit}>
 				<Fontisto
-					name="adobe"
+					name="share"
 					size={18}
 					color="white"
 				/>
@@ -92,10 +92,6 @@ export default function SwipeableItem({
 			ref={swipRef}
 			// onSwipeableOpen={() => onDelete(item.id)}
 			onSwipeableOpen={resetIfAlreadyOpen}
-			onSwipeableClose={() => null}
-			onActivated={() => null}
-			onSwipeableWillOpen={() => null}
-			onSwipeableWillClose={() => null}
 			renderRightActions={() => (
 				<RightActions
 					onDelete={() => {

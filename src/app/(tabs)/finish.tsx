@@ -1,7 +1,10 @@
 import { FlatList, StyleSheet, View } from 'react-native';
 import SwipeableItem from '@/components/SwipeableItem';
 import { useState } from 'react';
-import { Swipeable } from 'react-native-gesture-handler';
+import {
+	GestureHandlerRootView,
+	Swipeable,
+} from 'react-native-gesture-handler';
 
 const listLanguages = [
 	{
@@ -58,7 +61,7 @@ export default function FinishScreen() {
 	};
 
 	return (
-		<View
+		<GestureHandlerRootView
 			style={{
 				flex: 1,
 			}}>
@@ -75,7 +78,7 @@ export default function FinishScreen() {
 					/>
 				)}
 			/>
-		</View>
+		</GestureHandlerRootView>
 	);
 }
 
